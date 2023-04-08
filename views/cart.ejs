@@ -9,7 +9,7 @@
         <header>
 
         <nav class="navigation">
-            <a href="home.ejs" class="brand-name">
+            <a href="/home" class="brand-name">
               Watch zone
             </a>
             <button
@@ -41,7 +41,7 @@
                 <a href="cart.html">
                   <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                 </a>
-                <span id="cart_count"></span>
+                <span id="cart_count"><%=cart.length%></span>
 
               </li>
               <li>
@@ -59,7 +59,7 @@
                 <div class="cart-page-left__container">
                     <h2>Purchase processing</h2>
                     <ul class="breadcrumb">
-                        <li><a href="home.ejs">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li><a href="#">Quick view</a></li>
                         <li class="active">Cart</li>
                       </ul>
@@ -129,34 +129,6 @@
                 </div>
             </div>
         </main>
-        <script>
-        window.addEventListener('load', function () {
-                let loggedIn =  localStorage.getItem('loggedInUser');
-                var userName = loggedIn.split('@')[0];
-                document.getElementById("userName").innerHTML = userName;
-                let userData = JSON.parse(localStorage.getItem('userData')) || [];
-                let cartItems = userData.length && JSON.parse(localStorage.getItem('userData')).find(o => o.email == loggedIn)?.cart;
-                console.log("cart items",cartItems)
-                document.getElementById("cart_count").innerHTML = cartItems?.length;
-
-                var nHTML = '';
-                let e =document.getElementById("cart_items")
-
-                cartItems.forEach(element => {
-                  nHTML = '  <div class="cart-item__container"><div><img src="'+ element?.imageUrl +'" alt="skagen logo" class="cart-brand-logo"></div><div class="cart_details">'+ element?.name +'<div>$'+ element?.price +'</div><div class="cart__remove">remove</div></div> </div>';
-                  // document.getElementById("cart_items").innerHTML =e
-                  e.insertAdjacentHTML('beforeend', nHTML);
-                });
-
-
-        
-        })
-               function logOut() {
-          localStorage.setItem('loggedInUser', "");
-          window.location.href = 'index.hbs'
-
-        }
-        </script>
  
         </body>
 </html>
