@@ -1,0 +1,78 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap');
+*{
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color: #fff;
+}
+
+/** Tab Css **/
+
+.tab__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%); */
+    margin: auto;
+    width: 40%;
+  }
+  .tab{
+    padding: 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #8f8f8f;
+  }
+
+  .active__tab{
+    border-bottom: 3px solid green;
+    color: #fff;
+    font-weight: 900;
+  }
+
+
+  
+  /**Watch card **/
+
+  .watch__card{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .watch__card > h4 > span{
+    font-size: 14px;
+    color: #8f8f8f;
+
+  }
+
+  .quick__view {
+    display: none;
+    }
+  .quick__view > a{
+    text-decoration: none;
+    color: #fff;
+  }  
+
+    .watch__card:hover .quick__view {
+        display: block;
+        position: absolute;
+        background: #008000e0;
+        border-radius: 50px;
+        padding: 0.5rem;
+    }
+
+ .container{
+    margin: 50px 200px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+ }   

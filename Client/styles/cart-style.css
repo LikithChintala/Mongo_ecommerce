@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap');
+*{
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color: #fff;
+}
+main{
+  margin: 0 200px;
+
+}
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: #fff;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #fff;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #c4c4c4;
+  text-decoration: none;
+}
+
+ul.breadcrumb > .active {
+  color: #c4c4c4;
+  text-decoration: none;
+}
+
+.cart-page__container{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 32px;
+}
+.cart-tile__header{
+  color: #999999;
+  padding: 1rem 0;
+
+}
+
+.cart-tile__container{
+  background-color: #1d1e22;
+  padding: 1rem;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 5px;
+}
+
+
+
+/** card styles **/
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  /* background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px; */
+}
+
+input[type=text] {
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 0px solid #ccc;
+  border-radius: 3px;
+  background: #1d1e22;
+  color: #fff;
+}
+
+label {
+  margin-bottom: 10px;
+    display: block;
+    color: #999999;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+.cart-brand-logo{
+  height: 60px;
+  width: 60px;
+}
+
+.cart-item__container{
+  display: flex;
+  gap: 10px;
+  min-width: 190px;
+  border: 1px solid #999999;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem;
+  max-width: 240px;
+}
+
+.cart__remove{
+  font-size: 14px;
+  color: red;
+  cursor: pointer;
+  margin-left: 75px;
+  width: 100%;
+  bottom: 0;
+  /* right: 0; */
+  position: absolute;
+}
+
+.cart_details{
+  position: relative;
+}
+
+.cart-page-left__container{
+  flex-basis:60%;
+
+
+}
+.cart-page-right__container{
+  flex-basis:40%;
+
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
