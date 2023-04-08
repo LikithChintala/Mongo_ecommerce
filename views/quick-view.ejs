@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../public/styles/quick-view-style.css">
-        <link rel="stylesheet" href="../public/styles/navbar-style.css">
+        <link rel="stylesheet" href="../styles/quick-view-style.css">
+        <link rel="stylesheet" href="../styles/navbar-style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -10,15 +10,13 @@
             $(document).ready(function(){
               $('.slider').bxSlider();
             });
-            
-            
           </script>      
     </head>
     <body>
         <header>
 
         <nav class="navigation">
-            <a href="home.ejs" class="brand-name">
+            <a href="/home" class="brand-name">
               Watch zone
             </a>
             <button
@@ -47,14 +45,14 @@
                     Welcome, <span id="userName"></span>
                 </li>
               <li>
-                <a href="cart.html">
-                  <img src="../public/images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
+                <a href="/cart">
+                  <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                 </a>
                 <span id="cart_count"></span>
               </li>
               <li>
                 <div onclick="logOut()">
-                  <img src="../public/images/logout.png" alt="logout" height="24" width="24"/>
+                  <img src="../images/logout.png" alt="logout" height="24" width="24"/>
                 </div>
               </li>
             </ul>
@@ -63,7 +61,7 @@
         </header>
         <main>
             <ul class="breadcrumb">
-                <li><a href="home.ejs">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <li class="active">Quick view</li>
               </ul>
             <div class="quick-view-page__container">
@@ -71,18 +69,18 @@
                 <div class="quick-view-page-left__container">
                         <div class="slider__container">
                             <div class="slider">
-                                <img src="../public/images/SKW3052_1.jpeg" alt="slider image" class="product-detail-slider-image" >
-                                <img src="../public/images/SKW3052_2.jpeg" alt="slider image" class="product-detail-slider-image" >
-                                <img src="../public/images/SKW3052_3.jpeg" alt="slider image" class="product-detail-slider-image" >
-                                <img src="../public/images/SKW3052_4.jpeg" alt="slider image" class="product-detail-slider-image" >
+                                <img src=<%= product.img%> alt="slider" class="product-detail-slider-image" >
+                                <img src=<%= product.img%> alt="slider" class="product-detail-slider-image" >
+                                <img src=<%= product.img%> alt="slider" class="product-detail-slider-image" >
+                                <img src=<%= product.img%> alt="slider" class="product-detail-slider-image" >
                               </div>
                         </div>
                 </div>
                 <div class="quick-view-page-right__container">
                     
                     <div class="product-detail_header">
-                        <img src="../public/images/skagen_logo.png" alt="skagen logo" class="product-detail-brand-logo">
-                        <h1 class="product-name">Grenen Lille Three-Hand Date Sand Eco Leather Watch</h1>    
+                        <img src=<%= product.img%> alt="logo" class="product-detail-brand-logo">
+                        <h1 class="product-name"><%= product.title%></h1>
                     </div>
                     <div id="rating-container">
                         <div class="rating" data-rating="1" >★</div>
@@ -93,7 +91,7 @@
                          &nbsp; 0 Reviews
                       </div>
 
-                      <div>$ 300</div>
+                      <div>$ <%= product.price%></div>
                     <hr class="mt-4">
                     <button class="add-to-bag__button" onclick="addToCart()">Add to bag</button>
                     <hr class="mt-4">
@@ -101,16 +99,16 @@
                         <div class="top-attributes">
                         <h2 class="col-12 title detail-panel-title">Product Details</h2>
                         <div class="attribute">
-                        <span class="label">Sku:</span> <span class="value">SKW3052</span>
+                            <span class="label">Desc:</span> <span class="value"><%= product.desc%></span>
                         </div>
                         <div class="attribute">
-                        <span class="label">Case Size:</span> <span class="value">26 mm</span>
+                        <span class="label">Case Size:</span> <span class="value"><%= product.size%></span>
                         </div>
-                        <div class="attribute">
-                        <span class="label">Movement:</span> <span class="value">Three Hand Date</span>
+                        <div class="attribute view-more-attribute show">
+                            <span class="label">Case Color:</span> <span class="value"><%= product.color%></span>
                         </div>
-                        <div class="attribute">
-                        <span class="label">Platform:</span> <span class="value">GRENEN LILLE</span>
+                        <div class="attribute view-more-attribute show">
+                            <span class="label">Category:</span> <span class="value"><%= product.category%></span>
                         </div>
                         <div class="attribute">
                         <span class="label">Strap Material:</span> <span class="value">Eco Leather</span>
@@ -121,25 +119,11 @@
                         <div class="attribute">
                         <span class="label">Case Material:</span> <span class="value">At Least 50% Recycled Stainless Steel</span>
                         </div>
-                        <div class="attribute view-more-attribute show">
-                        <span class="label">Case Color:</span> <span class="value">Rose Gold</span>
-                        </div>
+
                         <div class="attribute view-more-attribute show">
                         <span class="label">Dial Colour:</span> <span class="value">Greystone</span>
                         </div>
-                        <div class="attribute view-more-attribute show">
-                        <span class="label">Strap Width:</span> <span class="value">16 mm</span>
-                        </div>
-                        <div class="attribute view-more-attribute show">
-                        <span class="label">Closure:</span> <span class="value">Single Prong Strap Buckle</span>
-                        </div>
-                        <div class="attribute view-more-attribute show">
-                        <span class="label">Strap Inner Circumference:</span> <span class="value">175 +/- 5 mm</span>
-                        </div>
-                        <div class="attribute view-more-attribute show">
-                        <span class="label">Battery Type:</span> <span class="value">SR621SW</span>
-                        </div>
-                      
+
                         </div>
                         </div>
                 </div>
@@ -155,9 +139,6 @@
                 let cartItems = userData.length && JSON.parse(localStorage.getItem('userData')).find(o => o.email == loggedIn)?.cart;
                 console.log("cart items",cartItems)
                 document.getElementById("cart_count").innerHTML = cartItems?.length;
-
-                
-          
         
         })
         function logOut() {

@@ -1,6 +1,7 @@
 const userModel = require('../models/User');
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+var cookieParser = require('cookie-parser')
 
 module.exports= {
     register: async function(req,res){
@@ -46,6 +47,8 @@ module.exports= {
             // process.env.JWT_SEC,
             //     {expiresIn:"3d"}
             // );
+
+            res.cookie('user', user);
 
             // const { password, ...others } = user._doc;
             res.redirect('/home');

@@ -11,8 +11,17 @@ module.exports= {
         });
         res.render('home.ejs', {products: products});
     },
+    productDetail: async (req, res) => {
+        const selectedProduct = await productModel.findByIdAndUpdate(
+          req.params.id,
+          {
+            $set: req.body,
+          },
+          { new: true }
+        );
+        res.render('quick-view.ejs', {product: selectedProduct});
+    },
     addProduct: async (req, res) => {
-        // router.post("/", verifyTokenAndAdmin, async (req, res) => {
         const newProduct = new productModel(req.body);
         try {
             const savedProduct = await newProduct.save();
@@ -20,7 +29,7 @@ module.exports= {
         } catch (err) {
             res.status(500).json(err);
         }
-    }
+    },
 
 // //UPDATE
 // router.put("/:id", verifyTokenAndAdmin, async (req, res) => {

@@ -5,11 +5,13 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const path = require("path");
+var cookieParser = require('cookie-parser')
 
 dotenv.config();
 
 // setting up middleware to parse request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser())
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://sailikithsai:likith1434@D@cluster0.gfjb6og.mongodb.net/?retryWrites=true&w=majority";
@@ -43,18 +45,21 @@ const stripeRoute = require("./routes/stripe")
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
-app.use("/api/carts", cartRoute);
+app.use("/api/cart", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
 //controllers
 const productController = require("./controllers/productController");
+const cartController = require("./controllers/cartController");
 
 // html routes
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
 app.get('/home', productController.filteredProducts);
+app.get('/home/:id', productController.productDetail);
+app.get('/cart', cartController.getCart);
 
 // styles
 app.use(express.static(__dirname + '/public'));

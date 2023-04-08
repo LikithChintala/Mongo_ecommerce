@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../public/styles/cart-style.css">
-        <link rel="stylesheet" href="../public/styles/navbar-style.css">
+        <link rel="stylesheet" href="../styles/cart-style.css">
+        <link rel="stylesheet" href="../styles/navbar-style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
@@ -39,14 +39,14 @@
                 </li>
               <li>
                 <a href="cart.html">
-                  <img src="../public/images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
+                  <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                 </a>
                 <span id="cart_count"></span>
 
               </li>
               <li>
                 <div onclick="logOut()">
-                  <img src="../public/images/logout.png" alt="logout" height="24" width="24"/>
+                  <img src="../images/logout.png" alt="logout" height="24" width="24"/>
                 </div>
               </li>
             </ul>
@@ -99,33 +99,6 @@
                                   </div>
                                 </div>
                               </div>
-                    
-                              <div class="col-25">
-                                <h3>Payment</h3>
-                                <label for="fname">Accepted Cards</label>
-                                <div class="icon-container">
-                                  <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                  <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                  <i class="fa fa-cc-discover" style="color:orange;"></i>
-                                </div>
-                                <label for="cname">Name on Card</label>
-                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                                <label for="ccnum">Credit card number</label>
-                                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                                <label for="expmonth">Exp Month</label>
-                                <input type="text" id="expmonth" name="expmonth" placeholder="September">
-                                <div class="row">
-                                  <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
-                                  </div>
-                                  <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
-                                  </div>
-                                </div>
-                              </div>
                               
                             </div>
                             <label>
@@ -141,25 +114,23 @@
                 <div class="cart-page-right__container">
                     <h2>Your cart</h2>
                     <div id="cart_items" >
-                        <!-- <div class="cart-item__container">
+                        <% for ( var i=0; i< cart.length; i++) { %>
+                        <div class="cart-item__container">
                           <div>
-                            <img src="images/skagen_logo.png" alt="skagen logo" class="cart-brand-logo">
+                            <img src=<%= cart[i].img%> alt="logo" class="cart-brand-logo">
                           </div>
                           <div class="cart_details">
-                            Name
-                            <div>$3000</div>
-                            <div class="cart__remove">
-                              remove
-                            </div>
+                              <%= cart[i].title%>
+                            <div>$<%= cart[i].price%></div>
                           </div>
-                          
-                        </div> -->
+                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
         </main>
         <script>
-window.addEventListener('load', function () {
+        window.addEventListener('load', function () {
                 let loggedIn =  localStorage.getItem('loggedInUser');
                 var userName = loggedIn.split('@')[0];
                 document.getElementById("userName").innerHTML = userName;
