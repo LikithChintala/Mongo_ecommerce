@@ -25,7 +25,7 @@
             <div class="form login">
                 <form method="post" action="/api/auth/login">
                     <div class="field">
-                        <input id="login_email" placeholder="Email Address" required type="text" name="username">
+                        <input id="login_email" placeholder="User Name" required type="text" name="username">
                     </div>
                     <div class="field">
                         <input id="login_pw" placeholder="Password" required type="password" name="password">
@@ -33,7 +33,7 @@
                     <div class="pass-link"><a href="#">Forgot password?</a></div>
                     <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input onclick="login()" type="submit" value="Login">
+                        <input id="signin_btn" type="submit" value="Login">
                     </div>
                 </form>
                 <div class="signup-link">Not a member? <a href="">Signup now</a></div>
