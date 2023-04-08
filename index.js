@@ -49,12 +49,17 @@ app.use("/api/checkout", stripeRoute);
 
 //controllers
 const productController = require("./controllers/productController");
+const ordersController = require("./controllers/ordersController");
 
 // html routes
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
+
 app.get('/home', productController.filteredProducts);
+
+app.get('/orders', ordersController.orders);
+
 
 // styles
 app.use(express.static(__dirname + '/public'));

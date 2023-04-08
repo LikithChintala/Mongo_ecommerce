@@ -77,3 +77,20 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.order__container{
+    border: 1px #D5D9D9 solid;
+      border-radius: 8px 8px 0 0;
+          width: 50%;
+
+  }
+  .order__header{
+    display: flex;
+    justify-content: space-between;
+    background: gray;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    background-color: #F0F2F2!important;
+    color: #565959!important;
+  }
+  
