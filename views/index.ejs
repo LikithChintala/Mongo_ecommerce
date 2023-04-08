@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../styles/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="title-text">
+        <div class="title login">Login Form</div>
+        <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+        <div class="slide-controls">
+            <input checked id="login" name="slide" type="radio">
+            <input id="signup" name="slide" type="radio">
+            <label class="slide login" for="login">Login</label>
+            <label class="slide signup" for="signup">Signup</label>
+            <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+            <div class="form login">
+                <form method="post" action="/api/auth/login">
+                    <div class="field">
+                        <input id="login_email" placeholder="Email Address" required type="text" name="username">
+                    </div>
+                    <div class="field">
+                        <input id="login_pw" placeholder="Password" required type="password" name="password">
+                    </div>
+                    <div class="pass-link"><a href="#">Forgot password?</a></div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input onclick="login()" type="submit" value="Login">
+                    </div>
+                </form>
+                <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+            </div>
+
+            <div class="form signup">
+                <form method="post" action="/api/auth/register">
+                  <div class="field">
+                     <input id="username" placeholder="Username" required type="text" name="username">
+                  </div>
+                   <div class="field">
+                       <input id="signup_email" placeholder="Email Address" required type="email" name="email">
+                   </div>
+                   <div class="field">
+                       <input id="signup_password" placeholder="Password" required type="password" name="password">
+                   </div>
+                   <div class="field btn">
+                       <div class="btn-layer"></div>
+                       <input id="signup_btn" type="submit" value="Signup">
+                   </div>
+                </form>
+                <div class="signin-link">Already a member? <a href="">Signin now</a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const loginText = document.querySelector(".title-text .login");
+    const loginForm = document.querySelector(".form.login");
+    const loginBtn = document.querySelector("label.login");
+    const signupBtn = document.querySelector("label.signup");
+    const signupLink = document.querySelector(".form .signup-link a");
+    const signinLink = document.querySelector(".form .signin-link a");
+
+    signupBtn.onclick = (() => {
+        loginForm.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
+    });
+    loginBtn.onclick = (() => {
+        loginForm.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
+    });
+    signupLink.onclick = (() => {
+        signupBtn.click();
+        return false;
+    });
+    signinLink.onclick = (() => {
+        loginBtn.click();
+        return false;
+    });
+</script>
+</body>
+</html>

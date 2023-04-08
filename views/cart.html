@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../public/styles/cart-style.css">
+        <link rel="stylesheet" href="../public/styles/navbar-style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <header>
+
+        <nav class="navigation">
+            <a href="home.ejs" class="brand-name">
+              Watch zone
+            </a>
+            <button
+              class="hamburger"
+              
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="white"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <div
+              class="navigation-menu"
+            >
+            <ul>
+               
+              <li>
+                    Welcome, <span id="userName"></span>
+                </li>
+              <li>
+                <a href="cart.html">
+                  <img src="../public/images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
+                </a>
+                <span id="cart_count"></span>
+
+              </li>
+              <li>
+                <div onclick="logOut()">
+                  <img src="../public/images/logout.png" alt="logout" height="24" width="24"/>
+                </div>
+              </li>
+            </ul>
+            </div>
+          </nav>
+        </header>
+        <main>
+            
+            <div class="cart-page__container">
+                <div class="cart-page-left__container">
+                    <h2>Purchase processing</h2>
+                    <ul class="breadcrumb">
+                        <li><a href="home.ejs">Home</a></li>
+                        <li><a href="#">Quick view</a></li>
+                        <li class="active">Cart</li>
+                      </ul>
+                    <!-- <div class="cart-tile__container">
+                        <div class="cart-tile__header">
+                            ADDRESS
+                        </div>
+                        <div>
+                            92 Meldazy DR, Scarbrough- ON , M1P 4G3.
+                        </div>
+                        </div> -->
+                    <div>
+                        <div class="container">
+
+                        <form action="/action_page.php">
+      
+                            <div class="row">
+                              <div class="col-25">
+                                <h3 class="tile__header">Billing Address</h3>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="john@example.com">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+                                <input type="text" id="city" name="city" placeholder="New York">
+                    
+                                <div class="row">
+                                  <div class="col-50">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" placeholder="NY">
+                                  </div>
+                                  <div class="col-50">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                  </div>
+                                </div>
+                              </div>
+                    
+                              <div class="col-25">
+                                <h3>Payment</h3>
+                                <label for="fname">Accepted Cards</label>
+                                <div class="icon-container">
+                                  <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                  <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                  <i class="fa fa-cc-discover" style="color:orange;"></i>
+                                </div>
+                                <label for="cname">Name on Card</label>
+                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                <label for="ccnum">Credit card number</label>
+                                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                <label for="expmonth">Exp Month</label>
+                                <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                <div class="row">
+                                  <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                  </div>
+                                  <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                  </div>
+                                </div>
+                              </div>
+                              
+                            </div>
+                            <label>
+                              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                            </label>
+                            <input type="submit" value="Continue to checkout" class="btn">
+                          </form>
+                          </div>
+
+                    </div>    
+                   
+                </div>
+                <div class="cart-page-right__container">
+                    <h2>Your cart</h2>
+                    <div id="cart_items" >
+                        <!-- <div class="cart-item__container">
+                          <div>
+                            <img src="images/skagen_logo.png" alt="skagen logo" class="cart-brand-logo">
+                          </div>
+                          <div class="cart_details">
+                            Name
+                            <div>$3000</div>
+                            <div class="cart__remove">
+                              remove
+                            </div>
+                          </div>
+                          
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+window.addEventListener('load', function () {
+                let loggedIn =  localStorage.getItem('loggedInUser');
+                var userName = loggedIn.split('@')[0];
+                document.getElementById("userName").innerHTML = userName;
+                let userData = JSON.parse(localStorage.getItem('userData')) || [];
+                let cartItems = userData.length && JSON.parse(localStorage.getItem('userData')).find(o => o.email == loggedIn)?.cart;
+                console.log("cart items",cartItems)
+                document.getElementById("cart_count").innerHTML = cartItems?.length;
+
+                var nHTML = '';
+                let e =document.getElementById("cart_items")
+
+                cartItems.forEach(element => {
+                  nHTML = '  <div class="cart-item__container"><div><img src="'+ element?.imageUrl +'" alt="skagen logo" class="cart-brand-logo"></div><div class="cart_details">'+ element?.name +'<div>$'+ element?.price +'</div><div class="cart__remove">remove</div></div> </div>';
+                  // document.getElementById("cart_items").innerHTML =e
+                  e.insertAdjacentHTML('beforeend', nHTML);
+                });
+
+
+        
+        })
+               function logOut() {
+          localStorage.setItem('loggedInUser', "");
+          window.location.href = 'index.hbs'
+
+        }
+        </script>
+ 
+        </body>
+</html>
