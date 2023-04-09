@@ -58,12 +58,11 @@ const ordersController = require("./controllers/ordersController");
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
-
 app.get('/home', productController.filteredProducts);
 app.get('/home/:id', productController.productDetail);
 app.get('/cart', cartController.getCart);
-
 app.get('/orders', ordersController.orders);
+// app.get('/logout', authController.logout);
 
 
 // styles

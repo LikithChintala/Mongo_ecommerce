@@ -30,7 +30,7 @@
                     <a href="orders">My Orders</a>
                 </li>
                 <li>
-                  <a href="cart.html">
+                  <a href="/cart">
                     <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                   </a>
                   <span id="cart_count"></span>
@@ -73,14 +73,29 @@
                     <div style="padding: 8px;">
                         <span style="text-transform: capitalize;"><%= orders[i].status%></span>
                         <div>
-                            <span><%= orders[i].address.city%>,<%= orders[i].address.province%></span>
+                            <span><%= orders[i].address.city%>,<%= orders[i].address.state%></span>
+                        </div>
+
+                        <div id="cart_items" >
+                            <% for ( var j=0; j< orders[i].products.length; j++) { %>
+                                <div class="cart-item__container">
+                                    <div>
+                                        <img src=<%= orders[i].products[j].img%> alt="logo" class="cart-brand-logo">
+                                    </div>
+                                    <div class="cart_details">
+                                        <%= orders[i].products[j].title%>
+                                        <div>$<%= orders[i].products[j].price%></div>
+                                    </div>
+                                </div>
+                            <% } %>
                         </div>
 
                     </div>
                 </div>
 
+
                 <% } %>
-            
+
            </div>    
                 
            

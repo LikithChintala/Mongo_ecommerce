@@ -35,19 +35,19 @@
             <ul>
                
               <li>
-                    Welcome, <span id="userName"></span>
+                    Welcome <span id="userName"><%= user.username%>!</span>
                 </li>
               <li>
-                <a href="cart.html">
+                <a href="/cart">
                   <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                 </a>
-                <span id="cart_count"><%=cart.length%></span>
+                <span id="cart_count"><%=cart.products.length%></span>
 
               </li>
               <li>
-                <div onclick="logOut()">
+                <a href="logout">
                   <img src="../images/logout.png" alt="logout" height="24" width="24"/>
-                </div>
+                </a>
               </li>
             </ul>
             </div>
@@ -74,7 +74,7 @@
                     <div>
                         <div class="container">
 
-                        <form action="/action_page.php">
+                        <form action="/api/orders/create" method="post">
       
                             <div class="row">
                               <div class="col-25">
@@ -102,9 +102,10 @@
                               
                             </div>
                             <label>
-                              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                              <input type="checkbox" checked="checked" name="same-address"> Shipping address same as billing
                             </label>
-                            <input type="submit" value="Continue to checkout" class="btn">
+                            <input type="text" hidden="true" value=<%= cart.id%> name="cart">
+                            <input type="submit" value="Place Order" class="btn">
                           </form>
                           </div>
 
@@ -114,14 +115,14 @@
                 <div class="cart-page-right__container">
                     <h2>Your cart</h2>
                     <div id="cart_items" >
-                        <% for ( var i=0; i< cart.length; i++) { %>
+                        <% for ( var i=0; i< cart.products.length; i++) { %>
                         <div class="cart-item__container">
                           <div>
-                            <img src=<%= cart[i].img%> alt="logo" class="cart-brand-logo">
+                            <img src=<%= cart.products[i].img%> alt="logo" class="cart-brand-logo">
                           </div>
                           <div class="cart_details">
-                              <%= cart[i].title%>
-                            <div>$<%= cart[i].price%></div>
+                              <%= cart.products[i].title%>
+                            <div>$<%= cart.products[i].price%></div>
                           </div>
                         </div>
                         <% } %>

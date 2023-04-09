@@ -93,7 +93,10 @@
 
                       <div>$ <%= product.price%></div>
                     <hr class="mt-4">
-                    <button class="add-to-bag__button" onclick="addToCart()">Add to bag</button>
+                    <form method="post" action="/api/cart/add">
+                        <input type="text" name="productId" hidden="true" value=<%= product.id%>>
+                        <button class="add-to-bag__button">Add to bag</button>
+                    </form>
                     <hr class="mt-4">
                     <div class="description-and-detail">
                         <div class="top-attributes">
@@ -129,49 +132,5 @@
                 </div>
             </div>
         </main>
-        <script>
-          
-        window.addEventListener('load', function () {
-                let loggedIn =  localStorage.getItem('loggedInUser');
-                var userName = loggedIn.split('@')[0];
-                document.getElementById("userName").innerHTML = userName;
-                let userData = JSON.parse(localStorage.getItem('userData')) || [];
-                let cartItems = userData.length && JSON.parse(localStorage.getItem('userData')).find(o => o.email == loggedIn)?.cart;
-                console.log("cart items",cartItems)
-                document.getElementById("cart_count").innerHTML = cartItems?.length;
-        
-        })
-        function logOut() {
-          localStorage.setItem('loggedInUser', "");
-          window.location.href = 'index.hbs'
-
-        }
-
-        function addToCart(){
-          let loggedIn =  localStorage.getItem('loggedInUser');
-          let userData = JSON.parse(localStorage.getItem('userData')) || [];
-          let cartItems = userData.length && JSON.parse(localStorage.getItem('userData')).find(o => o.email == loggedIn)?.cart;
-          console.log("cart items",cartItems)
-          cartItems.push({
-            imageUrl:'images/skagen_logo.png',
-            name:'Grenen Lille Three-Hand Date Sand Eco Leather Watch',
-            price:'300',
-          })
-          let temp = [];
-          JSON.parse(localStorage.getItem('userData')).forEach(o => {
-            if(o.email == loggedIn){
-                o['cart'] = cartItems
-                temp.push(o);
-              }
-              else{
-                temp.push(o);
-              }
-            })
-            localStorage.setItem('userData', JSON.stringify(temp));
-            window.location.reload();
-
-        }
-        </script>
- 
         </body>
 </html>

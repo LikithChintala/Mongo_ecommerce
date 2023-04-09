@@ -23,21 +23,35 @@ module.exports= {
                         products.push(product);
                     }
                 }
+                res.render('cart.ejs', {cart: {id: items[0]._id, products: products}, user: req.cookies.user});
             }
-            res.render('cart.ejs', {cart: products});
+            res.render('cart.ejs', {cart: {products: []}, user: req.cookies.user});
         } else {
             res.render('/');
         }
     },
     addCart: async (req, res) => {
+        let userId = req.cookies.user && req.cookies.user._id;
+        if (req.body.userId) {
+            userId = req.body.userId;
+        }
         let cart = await cartModel.find({
-            userId: req.body.userId
+            userId: userId
         });
         if(cart.length === 0) {
-            cart = new cartModel(req.body);
+            const payload = {
+                "userId": userId,
+                "products": [
+                    {
+                        "productId": req.body.productId,
+                        "quantity": 1
+                    }
+                ],
+            }
+            cart = new cartModel(payload);
         } else {
             cart = cart[0];
-            cart.products.push({productId: req.body.products[0].productId, quantity: 1})
+            cart.products.push({productId: req.body.productId, quantity: 1})
         }
 
         try {
