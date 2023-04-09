@@ -3,6 +3,8 @@
     <head>
         <link rel="stylesheet" href="../styles/home-style.css">
         <link rel="stylesheet" href="../styles/navbar-style.css">
+        <link rel="stylesheet" href="../styles/cart-style.css">
+
     </head>
     <body>
         <header>
@@ -24,7 +26,7 @@
             <div class="navigation-menu">
               <ul>
                 <li>
-                    Welcome, <span id="userName"></span>
+                  Welcome <span id="userName"><%= user.username%>!</span>
                 </li>
                 <li>
                     <a href="orders">My Orders</a>
@@ -36,7 +38,7 @@
                   <span id="cart_count"></span>
                 </li>
                 <li>
-                  <div onclick="logOut()">
+                  <div onclick="logout()">
                     <img src="../images/logout.png" alt="logout" height="24" width="24"/>
                   </div>
                 </li>
@@ -45,10 +47,21 @@
           </nav>
         </header>
         <main>
+          <h1 style="text-align: center;">My Orders</h1>
 
            <div class="container">
 
-            <% for ( var i=0; i< orders.length; i++) { %>
+           
+
+          <%
+  const sortedOrders = orders.sort(function(a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+%>
+
+
+
+            <% for ( var i=0; i< sortedOrders.length; i++) { %>
                 <div class="order__container">
                     <div class="order__header">
                         <div>
@@ -56,7 +69,8 @@
                                 Order placed
                             </b>
                             <div>
-                                <%= orders[i].createdAt%>
+                               <% const date = new Date(orders[i].createdAt); %>
+                              <%= date.toLocaleDateString() %>
                             </div>
                             
                         </div>
@@ -100,6 +114,24 @@
                 
            
         </main>
+        <script>
+          function logout() {
+            // Make an AJAX request to logout the user
+            fetch('/logout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ logout: true })
+            })
+            .then(response => {
+              if (response.redirected) {
+                // If the server redirected to the login page, redirect the client too
+                window.location.href = response.url;
+              }
+            })
+            .catch(error => console.error(error));
+          }
+          </script>
+          
 
         </body>
 </html>

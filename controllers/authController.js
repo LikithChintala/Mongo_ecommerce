@@ -40,23 +40,22 @@ module.exports= {
             originalPassword !== inputPassword &&
                 res.status(401).json("Wrong Password");
 
-            // const accessToken = jwt.sign({
-            //     id: user._id,
-            //     isAdmin: user.isAdmin,
-            // },
-            // process.env.JWT_SEC,
-            //     {expiresIn:"3d"}
-            // );
 
             res.cookie('user', user);
 
-            // const { password, ...others } = user._doc;
             res.redirect('/home');
 
         } catch(err){
             res.status(500).json(err);
         }
+    },
+
+    logout:async function(req, res) {
+            res.cookie('user', '');
+            res.redirect('/');
+
     }
+
 }
 
 

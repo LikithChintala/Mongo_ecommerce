@@ -9,7 +9,7 @@ module.exports= {
         const products = await productModel.find({
             category: category
         });
-        res.render('home.ejs', {products: products});
+        res.render('home.ejs', {products: products,user: req.cookies.user});
     },
     productDetail: async (req, res) => {
         const selectedProduct = await productModel.findByIdAndUpdate(
@@ -19,7 +19,7 @@ module.exports= {
           },
           { new: true }
         );
-        res.render('quick-view.ejs', {product: selectedProduct});
+        res.render('quick-view.ejs', {product: selectedProduct,user: req.cookies.user});
     },
     addProduct: async (req, res) => {
         const newProduct = new productModel(req.body);
@@ -30,42 +30,6 @@ module.exports= {
             res.status(500).json(err);
         }
     },
-
-// //UPDATE
-// router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const updatedProduct = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updatedProduct);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-//DELETE
-// router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     await Product.findByIdAndDelete(req.params.id);
-//     res.status(200).json("Product has been deleted...");
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-//
-// //GET PRODUCT
-// router.get("/find/:id", async (req, res) => {
-//   try {
-//     const product = await Product.findById(req.params.id);
-//     res.status(200).json(product);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 }
 
 

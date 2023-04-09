@@ -42,8 +42,8 @@
             <ul>
                
               <li>
-                    Welcome, <span id="userName"></span>
-                </li>
+                Welcome <span id="userName"><%= user.username%>!</span>
+              </li>
               <li>
                 <a href="/cart">
                   <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
@@ -51,7 +51,7 @@
                 <span id="cart_count"></span>
               </li>
               <li>
-                <div onclick="logOut()">
+                <div onclick="logout()">
                   <img src="../images/logout.png" alt="logout" height="24" width="24"/>
                 </div>
               </li>
@@ -132,5 +132,23 @@
                 </div>
             </div>
         </main>
+        <script>
+          function logout() {
+            // Make an AJAX request to logout the user
+            fetch('/logout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ logout: true })
+            })
+            .then(response => {
+              if (response.redirected) {
+                // If the server redirected to the login page, redirect the client too
+                window.location.href = response.url;
+              }
+            })
+            .catch(error => console.error(error));
+          }
+          </script>
+          
         </body>
 </html>

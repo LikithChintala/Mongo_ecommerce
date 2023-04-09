@@ -37,7 +37,11 @@
               <li>
                     Welcome <span id="userName"><%= user.username%>!</span>
                 </li>
+                <li>
+                  <a href="orders">My Orders</a>
+              </li>
               <li>
+                
                 <a href="/cart">
                   <img src="../images/shopping-cart.png" alt="Shopping-cart" height="24" width="24"/>
                 </a>
@@ -45,9 +49,9 @@
 
               </li>
               <li>
-                <a href="logout">
+                <div onclick="logout()">
                   <img src="../images/logout.png" alt="logout" height="24" width="24"/>
-                </a>
+                </div>
               </li>
             </ul>
             </div>
@@ -63,14 +67,7 @@
                         <li><a href="#">Quick view</a></li>
                         <li class="active">Cart</li>
                       </ul>
-                    <!-- <div class="cart-tile__container">
-                        <div class="cart-tile__header">
-                            ADDRESS
-                        </div>
-                        <div>
-                            92 Meldazy DR, Scarbrough- ON , M1P 4G3.
-                        </div>
-                        </div> -->
+                    
                     <div>
                         <div class="container">
 
@@ -130,6 +127,24 @@
                 </div>
             </div>
         </main>
+        <script>
+          function logout() {
+            // Make an AJAX request to logout the user
+            fetch('/logout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ logout: true })
+            })
+            .then(response => {
+              if (response.redirected) {
+                // If the server redirected to the login page, redirect the client too
+                window.location.href = response.url;
+              }
+            })
+            .catch(error => console.error(error));
+          }
+          </script>
+          
  
         </body>
 </html>

@@ -13,15 +13,6 @@ dotenv.config();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser())
 
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://sailikithsai:likith1434@D@cluster0.gfjb6og.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("watchstore").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
 //db connection
 mongoose
   .connect(process.env.MONGO_URL)
@@ -41,18 +32,17 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
-const stripeRoute = require("./routes/stripe")
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/orders", orderRoute);
-app.use("/api/checkout", stripeRoute);
 
 //controllers
 const productController = require("./controllers/productController");
 const cartController = require("./controllers/cartController");
 const ordersController = require("./controllers/ordersController");
+const authController = require("./controllers/authController");
 
 // html routes
 app.get('/', (req, res) => {
@@ -62,7 +52,7 @@ app.get('/home', productController.filteredProducts);
 app.get('/home/:id', productController.productDetail);
 app.get('/cart', cartController.getCart);
 app.get('/orders', ordersController.orders);
-// app.get('/logout', authController.logout);
+app.post('/logout', authController.logout);
 
 
 // styles

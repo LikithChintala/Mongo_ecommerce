@@ -27,12 +27,13 @@ module.exports= {
                         "userId": orders[j].userId,
                         "amount": orders[j].amount,
                         address: orders[j].address,
+                        "createdAt":orders[j].createdAt,
                         products: products,
                         status: orders[j].status,
                     });
                 }
             }
-            res.render('orders.ejs', {orders: finalOrders});
+            res.render('orders.ejs', {orders: finalOrders,user: req.cookies.user});
 
           } catch (err) {
             res.status(500).json(err);
@@ -68,53 +69,6 @@ module.exports= {
              res.status(500).json(err);
          }
     },
-
-    // getOrders : async(req,res) =>{
-    //     try {
-    //         const orders = await orderModel.find({ userId: req.params.userId });
-    //         res.status(200).json(orders);
-    //         res.render('orders.ejs', {orders: orders});
-
-    //       } catch (err) {
-    //         res.status(500).json(err);
-    //       }
-    // }
-
-// //UPDATE
-// router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const updatedProduct = await Product.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updatedProduct);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-//DELETE
-// router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     await Product.findByIdAndDelete(req.params.id);
-//     res.status(200).json("Product has been deleted...");
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-//
-// //GET PRODUCT
-// router.get("/find/:id", async (req, res) => {
-//   try {
-//     const product = await Product.findById(req.params.id);
-//     res.status(200).json(product);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 }
 
 
